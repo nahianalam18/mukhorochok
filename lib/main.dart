@@ -5,7 +5,7 @@ import './navigation_control.dart';
 void main() => runApp(MyApp());
 
 class MyApp extends StatelessWidget {
-  final appTitle = 'Mukhorochokh';
+  final appTitle = 'Mukhorochok';
 
   @override
   Widget build(BuildContext context) {
@@ -30,7 +30,7 @@ class MyHomePage extends StatelessWidget {
           Center(
             child: Items(),
           ),
-          Navigate()
+          Navigate(),
         ]),
       ),
       drawer: Drawer(

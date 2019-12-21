@@ -11,10 +11,16 @@ class _NavigateState extends State<Navigate> {
     return Container(
         child: Column(
       children: <Widget>[
-        RaisedButton(
-          onPressed: () {},
-          child: Text('Select'),
-        )
+        Row(mainAxisAlignment: MainAxisAlignment.center, children: <Widget>[
+          RaisedButton(
+            onPressed: () {},
+            child: Text('Select'),
+          ),
+          RaisedButton(
+            onPressed: () {},
+            child: Text('Prev'),
+          )
+        ])
       ],
     ));
   }

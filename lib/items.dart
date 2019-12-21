@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import './checkbox.dart';
 
 class Items extends StatelessWidget {
   final List<String> items;
@@ -24,7 +25,8 @@ class Items extends StatelessWidget {
                 child: Column(
                   children: <Widget>[
                     Image.asset(pictures[index++]),
-                    Text(element)
+                    Text(element),
+                    Cbox()
                   ],
                 ),
               ))
