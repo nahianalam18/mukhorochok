@@ -48,7 +48,7 @@ class MyHomePage extends StatelessWidget {
               ),
             ),
             ListTile(
-              title: Text('Profile'),
+              title: Text('View Set Menu'),
               onTap: () {
                 // Update the state of the app
                 // ...

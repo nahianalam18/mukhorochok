@@ -26,7 +26,7 @@ class Items extends StatelessWidget {
                   children: <Widget>[
                     Image.asset(pictures[index++]),
                     Text(element),
-                    Cbox()
+                    Cbox(foodName: element)
                   ],
                 ),
               ))
