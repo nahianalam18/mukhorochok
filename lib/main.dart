@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import './items.dart';
-import './navigation_control.dart';
+import './order.dart';
 
 void main() => runApp(MyApp());
 
@@ -11,26 +11,47 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       title: appTitle,
-      home: MyHomePage(title: appTitle),
+      home: MyHomePage(),
     );
   }
 }
 
 class MyHomePage extends StatelessWidget {
-  final String title;
+  List<String> selectItems = [];
+  void modItem(String name, int type) {
+    if (type == 1) selectItems.remove(name);
+    int check = 0;
+    for (int i = 0; i < selectItems.length; i++) {
+      if (selectItems[i] == name) check = 1;
+    }
+    if (check != 1 && type == 0) selectItems.add(name);
+  }
 
-  MyHomePage({Key key, this.title}) : super(key: key);
+  void removeItem(String name) {
+    int check = 0;
+    selectItems.remove(name);
+  }
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(title: Text(title)),
+      appBar: AppBar(title: Text('Mukhorochok')),
       body: SingleChildScrollView(
         child: Column(children: <Widget>[
           Center(
-            child: Items(),
+            child: Items(modItem),
           ),
-          Navigate(),
+          RaisedButton(
+            onPressed: () {
+              Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                      builder: (context) => ListOrder(
+                            orderItems: selectItems,
+                          )));
+            },
+            child: Text('Next'),
+          ),
         ]),
       ),
       drawer: Drawer(
