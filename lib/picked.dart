@@ -9,11 +9,19 @@ class PickedItem extends StatefulWidget {
 class _PickedItem extends State<PickedItem> {
   List foodArr;
   int quantity;
+  Map<String, int> fOrder = Map<String, int>();
   @override
   void initState() {
     foodArr = widget.foodList;
     quantity = 0;
+    arrange(foodArr);
     super.initState();
+  }
+
+  void arrange(List<String> foodItems) {
+    for (int i = 0; i < foodItems.length; i++) {
+      fOrder.putIfAbsent(foodItems[i], () => 0);
+    }
   }
 
   @override
@@ -24,25 +32,25 @@ class _PickedItem extends State<PickedItem> {
                 child: Column(
                   children: <Widget>[
                     Text(element),
-                    Text(quantity.toString()),
+                    Text(fOrder[element].toString()),
                     Row(
                       mainAxisAlignment: MainAxisAlignment.center,
                       children: <Widget>[
                         RaisedButton(
                           onPressed: () {
                             setState(() {
-                              quantity++;
+                              if (fOrder[element] > 0) fOrder[element]--;
                             });
                           },
-                          child: Text("+"),
+                          child: Text("-"),
                         ),
                         RaisedButton(
                             onPressed: () {
                               setState(() {
-                                if (quantity > 0) quantity--;
+                                fOrder[element]++;
                               });
                             },
-                            child: Text("-"))
+                            child: Text("+"))
                       ],
                     )
                   ],

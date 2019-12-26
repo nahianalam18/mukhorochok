@@ -22,7 +22,10 @@ class MyHomePage extends StatelessWidget {
     if (type == 1) selectItems.remove(name);
     int check = 0;
     for (int i = 0; i < selectItems.length; i++) {
-      if (selectItems[i] == name) check = 1;
+      if (selectItems[i] == name) {
+        check = 1;
+        break;
+      }
     }
     if (check != 1 && type == 0) selectItems.add(name);
   }
