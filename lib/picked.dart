@@ -1,14 +1,16 @@
 import 'package:flutter/material.dart';
+import './order.dart';
 
 class PickedItem extends StatefulWidget {
-  PickedItem({this.foodList});
   final List<String> foodList;
+  PickedItem({this.foodList});
   _PickedItem createState() => _PickedItem();
 }
 
 class _PickedItem extends State<PickedItem> {
-  List foodArr;
+  List<String> foodArr;
   int quantity;
+  var ca = ListOrder();
   Map<String, int> fOrder = Map<String, int>();
   @override
   void initState() {
@@ -33,31 +35,27 @@ class _PickedItem extends State<PickedItem> {
                   children: <Widget>[
                     Text(element),
                     Text(fOrder[element].toString()),
+                    //  Text(ca(element, fOrder[element])),
                     Row(
-                      mainAxisAlignment: MainAxisAlignment.center,
-                      children: <Widget>[
-                        RaisedButton(
-                          onPressed: () {
-                            setState(() {
-                              if (fOrder[element] > 0) fOrder[element]--;
-                            });
-                          },
-                          child: Text("-"),
-                        ),
-                        RaisedButton(
-                            onPressed: () {
-                              setState(() {
-                                fOrder[element]++;
-                              });
-                            },
-                            child: Text("+"))
-                      ],
-                    )
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        children: <Widget>[
+                          RaisedButton.icon(
+                              onPressed: () => setState(() {
+                                    if (fOrder[element] > 0) fOrder[element]--;
+                                  }),
+                              label: Text('Remove'),
+                              icon: Icon(Icons.remove)),
+                          RaisedButton.icon(
+                              onPressed: () => setState(() {
+                                    fOrder[element]++;
+                                  }),
+                              label: Text('Add'),
+                              icon: Icon(Icons.add))
+                        ])
                   ],
                 ),
               ))
           .toList(),
     );
-    ;
   }
 }
